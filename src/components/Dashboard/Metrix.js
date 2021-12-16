@@ -6,21 +6,23 @@ const Metrix = ({ item }) => {
       bg="white"
       className="mt-2"
       style={{
-        borderLeft: `10px solid rgba(6, 156,51, .8)`,
+        borderLeft: `10px solid rgb(0, 153, 50,.7)`,
         boxShadow: "1.6px 1.6px 5px grey",
       }}
     >
       <Card.Body>
         <Card.Title
           style={{
-            color: `${item.color1 ? item.color1 : "grey"}`,
+            color: `${item.color1 ? item.color1 : "black"}`,
             fontSize: "1.5em",
             marginBottom: "1em",
           }}
         >
           {item.price}{" "}
         </Card.Title>
-        <Card.Text style={{ fontsize: "1.5", fontWeight: "600" }}>
+        <Card.Text
+          style={{ fontsize: "1.5", fontWeight: "600", color: "black" }}
+        >
           {item.text}
         </Card.Text>
       </Card.Body>

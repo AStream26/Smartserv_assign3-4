@@ -24,7 +24,7 @@ let data = [
   {
     price: "$406,411.29",
     text: "Total Revenue",
-    color1: "rgba(6, 156,51, .8)",
+    color1: "rgb(0, 153, 50,.7)",
   },
   {
     price: "$620",
@@ -67,8 +67,8 @@ const data1 = {
         10000, 5000,
       ],
       fill: true,
-      borderColor: "rgba(6, 156,51, .8)",
-      backgroundColor: "rgba(6, 156,51, .8)",
+      borderColor: "rgb(0, 153, 50,.7)",
+      backgroundColor: "rgb(0, 153, 50,.7)",
     },
   ],
 };
@@ -88,8 +88,8 @@ const data2 = {
       label: "Revenue for November 2019",
       data: [140000, 120000, 100000, 80000, 60000, 40000, 20000],
       fill: true,
-      borderColor: "rgba(6, 156,51, .8)",
-      backgroundColor: "rgba(6, 156,51, .8)",
+      borderColor: "rgb(0, 153, 50,.7)",
+      backgroundColor: "rgb(0, 153, 50,.7)",
     },
   ],
 };
