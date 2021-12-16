@@ -13,7 +13,7 @@ const LoginForm = ({ setLogin }) => {
     // console.log(username);
     window.open("mailto:support@smartserv.io?subject=Forgot Password");
   };
-
+  console.log(setLogin);
   let checkforSpecial = () => {
     for (let ch of password) {
       if (

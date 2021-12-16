@@ -4,23 +4,29 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/LoginPage/Login";
 
 function App() {
-  let [islogin, SetLogin] = useState(false);
-
+  let [islogin, setLogin] = useState(false);
+  console.log(setLogin);
   return (
     <>
       <Switch>
         <Route
           path="/login"
-          render={(props) => <Login {...props} setLogin={SetLogin} />}
+          render={(props) => (
+            <Login {...props} islogin={true} setLogin={setLogin} />
+          )}
         />
 
         <Route
           path="/dashboard"
           render={(props) => (
-            <Dashboard {...props} login={islogin} setLogin={SetLogin} />
+            <Dashboard {...props} login={islogin} setLogin={setLogin} />
           )}
         />
-        <Route component={Login} />
+        <Route
+          render={(props) => (
+            <Login {...props} islogin={true} setLogin={setLogin} />
+          )}
+        />
       </Switch>
     </>
   );

@@ -1,7 +1,8 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import LoginForm from "./LoginForm";
-const Login = ({ setLogin }) => {
+const Login = ({ islogin, setLogin }) => {
+  console.log(islogin);
   return (
     <>
       <div style={{ height: "100vh", backgroundColor: "rgb(45, 45, 45)" }}>
@@ -11,7 +12,7 @@ const Login = ({ setLogin }) => {
               1
             </Col>
             <Col xs={10} md={6}>
-              <LoginForm setLogin={setLogin} />
+              <LoginForm islogin={islogin} setLogin={setLogin} />
             </Col>
             <Col xs={1} md={3}>
               3
