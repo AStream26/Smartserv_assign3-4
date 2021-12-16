@@ -1,15 +1,20 @@
 import React from "react";
 
-const message = ({ msg }) => {
+const Message = ({ msg }) => {
   return (
-    <span
+    <ul
       style={{
         color: "red",
+        display: "inline",
+        fontSize: "10px",
+        margin: "0px",
       }}
     >
-      {msg}
-    </span>
+      {msg.map((el, index) => (
+        <li key={index}>{el}</li>
+      ))}
+    </ul>
   );
 };
 
-export default message;
+export default Message;

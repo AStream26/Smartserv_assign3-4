@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Button, Col, Row, Image } from "react-bootstrap";
-
+import Message from "../Message/message";
 import Logo from "../../Logo.png";
-const LoginForm = () => {
+const LoginForm = ({ setLogin }) => {
   let [username, setUser] = useState("");
   let [password, setPassword] = useState("");
   let [correctPassword, SetCorrect] = useState(false);
@@ -13,24 +13,64 @@ const LoginForm = () => {
     // console.log(username);
     window.open("mailto:support@smartserv.io?subject=Forgot Password");
   };
+
+  let checkforSpecial = () => {
+    for (let ch of password) {
+      if (
+        (ch >= "a" && ch <= "z") ||
+        (ch >= "A" && ch <= "Z") ||
+        (ch >= "0" && ch <= "9")
+      )
+        continue;
+      else {
+        if (ch !== "@") return false;
+      }
+    }
+    return true;
+  };
+
+  let validateEmail = () => {
+    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!username.match(mailformat)) {
+      setMessage(["Invalid email !!"]);
+      return false;
+    }
+    return true;
+  };
   let validate = () => {
-    let message = [];
+    let msg = [];
     let Uppercase = new RegExp("^(?=.*[A-Z]).+$");
     let digit = new RegExp("^(?=.*\\d).+$");
+
     if (!Uppercase.test(password)) {
-      message.push("Password must contain atleast Uppercase letter");
+      msg.push("Password must contain atleast Uppercase letter");
     }
     if (!digit.test(password)) {
-      message.push("Password must contain atleast one digit");
+      msg.push("Password must contain atleast one digit");
     }
-
-    return message.length > 0 ? false : true;
+    if (!checkforSpecial()) {
+      msg.push("Password must not contain special character other than @ !!");
+    }
+    setMessage(msg);
+    return msg.length > 0 ? false : true;
   };
   let submit = (e) => {
     e.preventDefault();
-    if (validate()) {
+    if (!validateEmail()) {
+      return;
+    }
+
+    if (!validate()) {
+      return;
+    }
+    if (password === "SmartServTest@123") {
+      console.log("AA");
+      setLogin(true);
       history.push("/dashboard");
     } else {
+      setMessage(["incorrect Password"]);
+      console.log("a");
+      console.log(message);
     }
     // console.log(password);
     // console.log(username);
@@ -61,8 +101,11 @@ const LoginForm = () => {
               <Col xs={12} md={8}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Control
-                    onChange={(e) => setUser(e.target.value)}
-                    type="text"
+                    onChange={(e) => {
+                      setMessage([]);
+                      setUser(e.target.value);
+                    }}
+                    type="email"
                     placeholder="Username"
                   />
                 </Form.Group>
@@ -75,15 +118,20 @@ const LoginForm = () => {
               <Col xs={12} md={8}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Control
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setMessage([]);
+                      return setPassword(e.target.value);
+                    }}
                     type="password"
                     placeholder="Password"
                   />
+                  {message.length > 0 && <Message msg={message} />}
                 </Form.Group>
               </Col>
+
               <Col xs={1} md={2}></Col>
             </Row>
-            <br />
+
             <Row>
               <Col xs={1} md={2}></Col>
               <Col xs={12} md={8}>
